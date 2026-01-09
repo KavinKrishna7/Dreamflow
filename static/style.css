@@ -1,134 +1,240 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617);
-  color: #e5e7eb;
+/* ===============================
+   ROOT THEME VARIABLES
+================================ */
+:root {
+  --bg: #050914;
+  --fg: #f0f4f8;
+  --card: #1a1f2e;
+  --primary: #00bcd4;
+  --success: #4caf50;
+  --destructive: #f44336;
+  --border: rgba(255,255,255,0.15);
 }
 
-/* Toggle */
+.light {
+  --bg: #f5f7fa;
+  --fg: #1a1f2e;
+  --card: #ffffff;
+  --primary: #0097a7;
+  --border: rgba(0,0,0,0.1);
+}
+
+/* ===============================
+   GLOBAL STYLES
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: radial-gradient(
+    circle at top center,
+    #1e3a8a 0%,
+    #0f1e4d 45%,
+    #020617 100%
+  );
+  color: var(--fg);
+  text-align: center;
+  transition: background 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+}
+
+/* ===============================
+   THEME TOGGLE
+================================ */
 .theme-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: #111827;
-  border: 1px solid #334155;
-  color: white;
-  font-size: 22px;
+  background: var(--card);
+  border: 1px solid var(--primary);
+  border-radius: 50%;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Hero */
+/* ===============================
+   HERO SECTION
+================================ */
 .hero {
-  text-align: center;
-  padding: 60px 20px 30px;
+  padding: 70px 20px 40px;
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
-.gradient {
-  background: linear-gradient(90deg, #67e8f9, #a78bfa);
-  -webkit-background-clip: text;
-  color: transparent;
+.hero p {
+  font-size: 18px;
+  opacity: 0.85;
 }
 
-.subtitle {
-  color: #9ca3af;
-}
-
-.badges span {
-  display: inline-block;
-  margin: 10px;
-  padding: 8px 14px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Layout */
-.grid {
-  max-width: 1000px;
+/* ===============================
+   FORM CONTAINER
+================================ */
+.container {
+  max-width: 700px;
   margin: auto;
-  padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-/* Cards */
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
+  gap: 18px;
   padding: 25px;
 }
 
-/* Form */
-form input,
-form select {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  border: none;
-  background: #020617;
-  color: white;
+.container input,
+.container select {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--fg);
+  font-size: 15px;
+  outline: none;
 }
 
-form button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 14px;
+.container input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+/* ===============================
+   CHECK BUTTON
+================================ */
+.calculate {
+  grid-column: span 2;
+  padding: 18px;
+  border-radius: 18px;
   border: none;
-  background: linear-gradient(90deg, #67e8f9, #a78bfa);
-  font-size: 16px;
+  background: linear-gradient(90deg, var(--primary), #5f7cff);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.calculate:hover {
+  transform: scale(1.03);
+}
+
+/* ===============================
+   RESULT TEXT
+================================ */
+.result {
+  margin-top: 30px;
+  font-size: 22px;
   font-weight: bold;
 }
 
-/* Meter */
+.result.success {
+  color: var(--success);
+}
+
+.result.fail {
+  color: var(--destructive);
+}
+
+/* ===============================
+   METER SECTION
+================================ */
+.meter-wrapper {
+  margin-top: 35px;
+  padding-bottom: 80px;
+}
+
 .meter {
-  width: 200px;
-  height: 100px;
-  background: linear-gradient(90deg, #ef4444, #facc15, #22c55e);
-  border-radius: 200px 200px 0 0;
-  margin: 20px auto;
+  width: 240px;
+  height: 120px;
+  background: linear-gradient(
+    90deg,
+    #f44336,
+    #ffeb3b,
+    #4caf50
+  );
+  border-radius: 240px 240px 0 0;
+  margin: auto;
   position: relative;
 }
 
 .needle {
   width: 4px;
-  height: 90px;
+  height: 110px;
   background: white;
   position: absolute;
   bottom: 0;
   left: 50%;
   transform-origin: bottom;
   transform: rotate(-90deg);
-  transition: transform 1s ease;
+  transition: transform 1.2s ease-out;
 }
 
-#score {
-  text-align: center;
-  font-size: 24px;
+/* ===============================
+   SCORE TEXT
+================================ */
+.meter-value {
+  margin-top: 12px;
+  font-size: 26px;
+  font-weight: bold;
 }
 
-.approval {
-  background: #22c55e;
-  padding: 10px;
-  border-radius: 20px;
-  text-align: center;
+.suggestion {
   margin-top: 10px;
+  font-size: 16px;
+  opacity: 0.9;
 }
 
+/* ===============================
+   APPROVAL BADGE
+================================ */
+.approval-badge {
+  margin-top: 22px;
+  padding: 14px 30px;
+  background: var(--success);
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+  display: inline-block;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ===============================
+   UTILITIES
+================================ */
 .hidden {
   display: none;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #9ca3af;
+/* ===============================
+   RESPONSIVE (MOBILE)
+================================ */
+@media (max-width: 720px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .calculate {
+    grid-column: span 1;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
 }
+
