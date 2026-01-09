@@ -1,73 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Loan Eligibility Checker</title>
-  <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>Loan Eligibility Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
+<body class="dark">
 
-<body>
-  <button class="theme-toggle">🌙</button>
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 
-  <header class="hero">
-    <h1>
-      <span class="gradient">Loan Eligibility</span><br>
-      Checker
-    </h1>
-    <p class="subtitle">
-      Smart loan readiness analysis powered by modern algorithms.
-    </p>
+<section class="hero">
+    <h1>Loan Eligibility Checker</h1>
+    <p>Smart loan readiness analysis</p>
+</section>
 
-    <div class="badges">
-      <span>⚡ Instant Results</span>
-      <span>🛡 Secure Analysis</span>
-      <span>💼 Multiple Loan Types</span>
+<form id="loanForm" class="container">
+    <input name="age" type="number" placeholder="Age" required>
+    <input name="income" type="number" placeholder="Annual Income (LPA)" required>
+
+    <select name="loan_type" required>
+        <option value="">Select Loan Type</option>
+        <option value="p">💳 Personal</option>
+        <option value="h">🏠 Home</option>
+        <option value="c">🚗 Car</option>
+        <option value="e">🎓 Education</option>
+    </select>
+
+    <input name="emi" type="number" placeholder="Existing EMI (₹)" value="0">
+    <input name="loan" type="number" placeholder="Loan Amount (₹)" required>
+    <input name="tenure" type="number" placeholder="Tenure (Years)" required>
+
+    <button type="submit" class="calculate">CHECK ELIGIBILITY</button>
+</form>
+
+<div id="result" class="result hidden"></div>
+
+<div class="meter-wrapper hidden" id="meterWrapper">
+    <div class="meter">
+        <div class="needle" id="needle"></div>
     </div>
-  </header>
+    <div class="meter-value" id="scoreValue">0%</div>
+    <div class="suggestion" id="suggestion"></div>
+    <div id="approvalBadge" class="approval-badge hidden">✓ APPROVED</div>
+</div>
 
-  <main class="grid">
-    <section class="card">
-      <h2>Enter Your Details</h2>
-
-      <form id="loanForm">
-        <input name="age" type="number" placeholder="Age" required>
-        <input name="income" type="number" placeholder="Annual Income (LPA)" required>
-
-        <select name="loan_type" required>
-          <option value="">Loan Type</option>
-          <option value="p">Personal</option>
-          <option value="h">Home</option>
-          <option value="c">Car</option>
-          <option value="e">Education</option>
-        </select>
-
-        <input name="emi" type="number" placeholder="Existing EMI (₹)" value="0">
-        <input name="loan" type="number" placeholder="Loan Amount (₹)" required>
-        <input name="tenure" type="number" placeholder="Tenure (Years)" required>
-
-        <button type="submit">Check Eligibility</button>
-      </form>
-    </section>
-
-    <section class="card">
-      <h2>Eligibility Score</h2>
-
-      <div id="result">Fill the form to check eligibility</div>
-
-      <div class="meter">
-        <div id="needle" class="needle"></div>
-      </div>
-
-      <div id="score">0%</div>
-      <div id="suggestion"></div>
-      <div id="approval" class="approval hidden">✓ APPROVED</div>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 Loan Eligibility Checker
-  </footer>
-
-  <script src="/static/effects.js"></script>
+<script src="/static/effects.js"></script>
 </body>
 </html>
+
